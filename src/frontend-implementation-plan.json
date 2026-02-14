@@ -1,21 +1,61 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Retry build and deployment (no functional changes)",
+  "title": "Fix “No” button visibility, bounded evasion, and attempt escalation",
   "requirements": [
     {
-      "id": "REQ-14",
-      "summary": "Trigger a fresh build/deployment run using the current repository state with no functional/source changes.",
+      "id": "REQ-15",
+      "summary": "Make the “No” button visible immediately in the question phase with a non-overlapping initial position and correct stacking.",
       "acceptanceCriteria": [
-        "A new build is started using the current repository state.",
-        "No source files are modified as part of this request.",
-        "Deployment is attempted again and reports success or a clear failure reason."
+        "After the intro countdown ends and the question phase appears, both buttons labeled exactly “Yes” and “No” are visible at the same time without any user interaction.",
+        "The initial “No” button position does not overlap the “Yes” button and is clearly readable/visible on both desktop and mobile viewport sizes.",
+        "The “No” button is not visually hidden due to stacking order (z-index), transparency, or being positioned behind other elements."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/.rebuild-trigger",
-          "operation": "create",
-          "description": "Create a no-op rebuild trigger marker file intended solely to re-run the build/deployment pipeline (contains no application source/logic and does not change runtime behavior)."
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Adjust question-phase button rendering so the “No” button has a safe, non-overlapping initial position (not centered on the “Yes” button) and ensure its positioning mode is consistent from first render. Keep using the existing shadcn-ui Button component for “Yes”/“No”; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update question-phase button styles to guarantee the “No” button is not hidden by stacking order (e.g., z-index) and remains clearly visible/readable on desktop and mobile, without overlapping the “Yes” button in the default layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "summary": "Constrain the “No” button’s evasive movement to the visible bounds of the question button area.",
+      "acceptanceCriteria": [
+        "On repeated hover attempts, the “No” button always remains fully within the visible bounds of the question phase button area (no clipping/off-screen).",
+        "The “No” button remains clickable/hoverable and continues to move away on hover across multiple attempts."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Rework “No” button hover movement to compute a random position that stays fully within the buttons container bounds (accounting for the “No” button’s rendered width/height), using element refs/measurements rather than unconstrained percentages. Keep using the existing shadcn-ui Button component; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Ensure the question-phase buttons container defines a clear movement boundary (e.g., stable sizing and clipping/containment as needed) so the “No” button cannot move under other UI such as the fixed footer."
+        }
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "summary": "Fix “No” attempt counter escalation so dramatic messages and shrink behavior trigger on intended attempts without stale state.",
+      "acceptanceCriteria": [
+        "Dramatic messages appear consistently at the intended attempt milestones during hover attempts (e.g., 3rd, 5th, 7th+ attempt as defined by the implementation), without being delayed by one interaction.",
+        "The “No” button continues to shrink slightly after each failed hover attempt down to the defined minimum scale."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Refactor the hover handler to use the incremented attempt count for message milestone checks (avoid stale state), and keep the shrink-per-attempt logic consistent down to the defined minimum scale. Keep using the existing shadcn-ui Button component; verify the component's usage instructions before implementing."
         }
       ]
     }

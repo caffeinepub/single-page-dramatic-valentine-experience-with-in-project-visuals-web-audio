@@ -9,7 +9,7 @@ export default function App() {
   const [countdown, setCountdown] = useState(10);
   const [shake, setShake] = useState(false);
   const [noAttempts, setNoAttempts] = useState(0);
-  const [noPosition, setNoPosition] = useState({ x: 50, y: 50 });
+  const [noPosition, setNoPosition] = useState({ x: 70, y: 50 }); // Start to the right of Yes button
   const [noScale, setNoScale] = useState(1);
   const [dramaticMessage, setDramaticMessage] = useState('');
   const [finaleStarted, setFinaleStarted] = useState(false);
@@ -20,6 +20,8 @@ export default function App() {
   const audioContextRef = useRef<AudioContext | null>(null);
   const ambientOscRef = useRef<OscillatorNode | null>(null);
   const ambientGainRef = useRef<GainNode | null>(null);
+  const buttonsContainerRef = useRef<HTMLDivElement>(null);
+  const noButtonRef = useRef<HTMLButtonElement>(null);
   
   // Select teasing lines once at the start of finale
   const teasingLineRef = useRef<string>('');
@@ -190,29 +192,50 @@ export default function App() {
     };
   }, [phase]);
 
-  // Handle "No" button hover
+  // Handle "No" button hover with bounded movement
   const handleNoHover = () => {
-    setNoAttempts((prev) => prev + 1);
+    const newAttempts = noAttempts + 1;
+    setNoAttempts(newAttempts);
     
-    // Move to random position
-    const newX = Math.random() * 60 + 20; // 20-80%
-    const newY = Math.random() * 60 + 20;
-    setNoPosition({ x: newX, y: newY });
+    // Calculate bounded random position
+    if (buttonsContainerRef.current && noButtonRef.current) {
+      const container = buttonsContainerRef.current.getBoundingClientRect();
+      const button = noButtonRef.current.getBoundingClientRect();
+      
+      // Calculate safe bounds (percentage-based, accounting for button size)
+      const buttonWidthPercent = (button.width / container.width) * 100;
+      const buttonHeightPercent = (button.height / container.height) * 100;
+      
+      const minX = buttonWidthPercent / 2 + 5; // 5% padding
+      const maxX = 100 - buttonWidthPercent / 2 - 5;
+      const minY = buttonHeightPercent / 2 + 5;
+      const maxY = 100 - buttonHeightPercent / 2 - 5;
+      
+      const newX = Math.random() * (maxX - minX) + minX;
+      const newY = Math.random() * (maxY - minY) + minY;
+      
+      setNoPosition({ x: newX, y: newY });
+    } else {
+      // Fallback to safe bounded percentages
+      const newX = Math.random() * 60 + 20; // 20-80%
+      const newY = Math.random() * 60 + 20;
+      setNoPosition({ x: newX, y: newY });
+    }
     
     // Shrink slightly (minimum 0.4)
     setNoScale((prev) => Math.max(0.4, prev - 0.1));
     
-    // Show dramatic messages
-    if (noAttempts === 2) {
+    // Show dramatic messages using the NEW attempt count
+    if (newAttempts === 3) {
       setDramaticMessage('Why are you running from destiny?');
       setTimeout(() => setDramaticMessage(''), 3000);
-    } else if (noAttempts === 4) {
+    } else if (newAttempts === 5) {
       setDramaticMessage('The universe is watching you.');
       setTimeout(() => setDramaticMessage(''), 3000);
-    } else if (noAttempts === 6) {
+    } else if (newAttempts === 7) {
       setDramaticMessage('This is your moment. Don\'t waste it.');
       setTimeout(() => setDramaticMessage(''), 3000);
-    } else if (noAttempts >= 8) {
+    } else if (newAttempts >= 9) {
       setDramaticMessage('You know what you want to say...');
       setTimeout(() => setDramaticMessage(''), 3000);
     }
@@ -307,7 +330,7 @@ export default function App() {
               <div className="dramatic-message">{dramaticMessage}</div>
             )}
             
-            <div className="buttons-container">
+            <div className="buttons-container" ref={buttonsContainerRef}>
               <Button
                 size="lg"
                 onClick={handleYes}
@@ -318,6 +341,7 @@ export default function App() {
               </Button>
               
               <Button
+                ref={noButtonRef}
                 size="lg"
                 variant="outline"
                 onMouseEnter={handleNoHover}

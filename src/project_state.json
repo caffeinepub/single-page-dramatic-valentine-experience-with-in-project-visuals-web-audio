@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 9,
+  "projectStateVersion": 11,
   "summary": "Build a single-page, self-contained Valentine’s Day proposal experience as a React + TypeScript app compatible with the Internet Computer stack, featuring cinematic UI sequences, evasive “No” button interactions, and fully in-project generated visuals/audio (no external assets or libraries unless absolutely required), with a teasing/troll “Yes” click finale (no romantic payoff).",
   "architectural_notes": [
     "App must be a single self-contained page (no routing/multi-view); functionality may live in App.tsx with small internal components.",
@@ -123,6 +123,30 @@
       "title": "Trigger a fresh build and deployment of the current project without making any code changes.",
       "reqIds": [
         "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-no-button-is-visibly-rendered-immediately-during-the-question-phase-when-will-you-be-my-valentine-is-shown-and-does-not-start-overlapped-hidden-behind-the-yes-button",
+      "title": "Ensure the “No” button is visibly rendered immediately during the question phase (when “Will you be my Valentine?” is shown) and does not start overlapped/hidden behind the “Yes” button.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-constrain-the-no-button-s-evasive-movement-to-remain-within-the-visible-bounds-of-the-question-button-area-so-it-cannot-move-off-screen-or-under-other-ui-including-the-footer",
+      "title": "Constrain the “No” button’s evasive movement to remain within the visible bounds of the question button area so it cannot move off-screen or under other UI (including the footer).",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-no-button-attempt-counter-message-escalation-logic-so-dramatic-messages-trigger-at-the-intended-attempt-counts-during-the-question-phase-no-stale-state-issues",
+      "title": "Fix the “No” button attempt counter/message escalation logic so dramatic messages trigger at the intended attempt counts during the question phase (no stale state issues).",
+      "reqIds": [
+        "REQ-17"
       ],
       "version": 1
     }

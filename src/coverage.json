@@ -1,24 +1,50 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-14T04:30:29.750Z",
+  "generatedAt": "2026-02-14T04:47:56.410Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 3,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-14",
-        "summary": "Trigger a fresh build and deployment of the current project without making any code changes.",
+        "id": "REQ-15",
+        "summary": "Ensure the “No” button is visibly rendered immediately during the question phase (when “Will you be my Valentine?” is shown) and does not start overlapped/hidden behind the “Yes” button.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/public/.rebuild-trigger"
+          "frontend/src/App.tsx",
+          "frontend/src/index.css"
         ],
         "matchedFiles": [
-          "frontend/public/.rebuild-trigger"
+          "frontend/src/App.tsx",
+          "frontend/src/index.css"
+        ]
+      },
+      {
+        "id": "REQ-16",
+        "summary": "Constrain the “No” button’s evasive movement to remain within the visible bounds of the question button area so it cannot move off-screen or under other UI (including the footer).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/index.css"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/index.css"
+        ]
+      },
+      {
+        "id": "REQ-17",
+        "summary": "Fix the “No” button attempt counter/message escalation logic so dramatic messages trigger at the intended attempt counts during the question phase (no stale state issues).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx"
         ]
       }
     ]
@@ -28,7 +54,8 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/.rebuild-trigger",
+    "frontend/src/App.tsx",
+    "frontend/src/index.css",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

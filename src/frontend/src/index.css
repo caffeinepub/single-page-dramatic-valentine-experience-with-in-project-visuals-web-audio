@@ -228,55 +228,71 @@
 
 .buttons-container {
     position: relative;
-    height: 200px;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
 .yes-button {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-    padding: clamp(1.5rem, 4vw, 2rem) clamp(3rem, 8vw, 4rem);
-    background: oklch(0.55 0.22 15);
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    padding: clamp(1.5rem, 4vw, 2.5rem) clamp(3rem, 8vw, 5rem);
+    background: oklch(0.6 0.22 15);
     color: oklch(0.98 0 0);
     border: none;
     border-radius: 16px;
-    font-weight: 700;
+    font-weight: 600;
     box-shadow: 0 8px 30px oklch(0.5 0.2 15 / 0.5);
     transition: all 0.3s ease;
-    z-index: 10;
+    animation: buttonEntrance 1s ease-out 0.3s backwards;
+    position: relative;
+    z-index: 1;
 }
 
 .yes-button:hover:not(:disabled) {
-    background: oklch(0.6 0.24 15);
-    transform: translate(-50%, -50%) scale(1.05);
-    box-shadow: 0 12px 40px oklch(0.5 0.2 15 / 0.7);
+    background: oklch(0.65 0.24 15);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px oklch(0.5 0.2 15 / 0.6);
 }
 
 .yes-button:disabled {
-    opacity: 0.7;
+    opacity: 0.6;
     cursor: not-allowed;
 }
 
 .no-button {
-    font-size: clamp(1rem, 2.5vw, 1.4rem);
-    padding: clamp(1rem, 3vw, 1.5rem) clamp(2rem, 5vw, 3rem);
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    padding: clamp(1rem, 3vw, 1.5rem) clamp(2rem, 6vw, 3rem);
     background: transparent;
-    color: oklch(0.7 0.1 20);
-    border: 2px solid oklch(0.4 0.08 20);
+    color: oklch(0.85 0.08 20);
+    border: 2px solid oklch(0.7 0.1 20);
     border-radius: 12px;
-    font-weight: 600;
+    font-weight: 500;
+    box-shadow: 0 4px 15px oklch(0.5 0.15 15 / 0.3);
     cursor: pointer;
-    z-index: 5;
+    animation: buttonEntrance 1s ease-out 0.5s backwards;
+    z-index: 2;
+    pointer-events: auto;
 }
 
 .no-button:hover {
-    background: oklch(0.15 0.04 20);
-    border-color: oklch(0.5 0.1 20);
+    background: oklch(0.2 0.05 15);
+    border-color: oklch(0.75 0.12 20);
+}
+
+@keyframes buttonEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Finale Phase - Troll Sequence */
@@ -286,47 +302,45 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    background: oklch(0.08 0.01 15);
+    background: oklch(0.05 0 0);
 }
 
-/* WAIT step */
 .finale-wait {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: fadeIn 0.3s ease-in;
+    background: oklch(0.98 0.02 15);
 }
 
 .wait-text {
-    font-size: clamp(3rem, 12vw, 8rem);
+    font-size: clamp(3rem, 10vw, 8rem);
     font-weight: 900;
-    color: oklch(0.95 0.05 20);
-    text-shadow: 0 0 60px oklch(0.7 0.15 15 / 0.9);
+    color: oklch(0.15 0.05 15);
     letter-spacing: 0.1em;
-    animation: waitPulse 1s ease-in-out;
+    animation: waitPulse 0.5s ease-out;
 }
 
 @keyframes waitPulse {
-    0% { opacity: 0; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1.05); }
-    100% { opacity: 1; transform: scale(1); }
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-/* Dark glitch step */
 .finale-dark-glitch {
     width: 100%;
     height: 100%;
-    position: relative;
     background: oklch(0.05 0 0);
-    animation: darkFadeIn 0.3s ease-in;
-}
-
-@keyframes darkFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    position: relative;
 }
 
 .glitch-overlay {
@@ -335,19 +349,18 @@
     background: repeating-linear-gradient(
         0deg,
         oklch(0.05 0 0) 0px,
-        oklch(0.08 0.01 15) 2px,
+        oklch(0.08 0 0) 2px,
         oklch(0.05 0 0) 4px
     );
-    animation: glitchScan 0.3s linear;
-    opacity: 0.6;
+    animation: glitchScan 0.3s linear infinite;
+    opacity: 0.8;
 }
 
 @keyframes glitchScan {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
+    0% { transform: translateY(0); }
+    100% { transform: translateY(4px); }
 }
 
-/* But I won't step */
 .finale-but-i-wont {
     width: 100%;
     height: 100%;
@@ -355,140 +368,114 @@
     align-items: center;
     justify-content: center;
     background: oklch(0.05 0 0);
-    animation: fadeIn 0.5s ease-in;
 }
 
 .but-i-wont-text {
-    font-size: clamp(2.5rem, 10vw, 7rem);
-    font-weight: 800;
-    color: oklch(0.85 0.08 15);
-    text-shadow: 0 0 40px oklch(0.5 0.12 15 / 0.7);
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-weight: 700;
+    color: oklch(0.95 0.02 20);
     letter-spacing: 0.05em;
-    animation: dramaticReveal 0.8s ease-out;
+    animation: fadeInDramatic 1s ease-out;
+    text-shadow: 0 0 30px oklch(0.5 0.1 15 / 0.5);
 }
 
-@keyframes dramaticReveal {
-    0% { 
-        opacity: 0; 
-        transform: scale(0.9);
-        filter: blur(10px);
+@keyframes fadeInDramatic {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-    100% { 
-        opacity: 1; 
-        transform: scale(1);
-        filter: blur(0);
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* Teasing line step */
 .finale-teasing-line {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: oklch(0.06 0.01 15);
-    animation: fadeIn 0.6s ease-in;
+    background: oklch(0.05 0 0);
 }
 
 .teasing-line-text {
-    font-size: clamp(2rem, 8vw, 5rem);
-    font-weight: 700;
-    color: oklch(0.8 0.1 20);
-    text-shadow: 0 0 30px oklch(0.5 0.15 20 / 0.6);
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: 400;
+    color: oklch(0.85 0.05 20);
     font-style: italic;
     letter-spacing: 0.02em;
-    animation: teasingFloat 1s ease-out;
+    animation: fadeInSlow 1.5s ease-out;
+    text-shadow: 0 0 20px oklch(0.5 0.1 15 / 0.4);
     padding: 0 2rem;
     text-align: center;
 }
 
-@keyframes teasingFloat {
-    0% { 
-        opacity: 0; 
-        transform: translateY(30px);
+@keyframes fadeInSlow {
+    from {
+        opacity: 0;
     }
-    100% { 
-        opacity: 1; 
-        transform: translateY(0);
+    to {
+        opacity: 1;
     }
 }
 
-/* Final screen */
 .finale-final-screen {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: oklch(0.08 0.01 15);
     position: relative;
-    background: oklch(0.08 0.02 15);
-    animation: finalFadeIn 1.5s ease-in;
-}
-
-@keyframes finalFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }
 
 .grain-overlay {
     position: absolute;
     inset: 0;
-    background-image: 
-        radial-gradient(circle at center, transparent 0%, oklch(0.05 0 0 / 0.3) 100%),
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 2px,
-            oklch(0.1 0.01 15 / 0.03) 2px,
-            oklch(0.1 0.01 15 / 0.03) 4px
-        );
-    animation: grainShift 8s linear infinite;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.15;
     pointer-events: none;
+    animation: grainMove 0.5s steps(4) infinite;
 }
 
-@keyframes grainShift {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(-2px, 2px); }
-    50% { transform: translate(2px, -2px); }
-    75% { transform: translate(-2px, -2px); }
-    100% { transform: translate(0, 0); }
+@keyframes grainMove {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(-2%, 2%); }
+    50% { transform: translate(2%, -2%); }
+    75% { transform: translate(-2%, -2%); }
 }
 
 .final-content {
-    z-index: 10;
     text-align: center;
     padding: 2rem;
-    max-width: 90vw;
-    animation: finalContentReveal 2s ease-out;
+    animation: finalFadeIn 2s ease-out;
 }
 
-@keyframes finalContentReveal {
-    0% { 
-        opacity: 0; 
-        transform: scale(0.95);
+@keyframes finalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
-    100% { 
-        opacity: 1; 
-        transform: scale(1);
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
 .final-main-text {
-    font-size: clamp(2rem, 7vw, 5rem);
-    font-weight: 800;
-    color: oklch(0.85 0.08 20);
-    text-shadow: 0 0 40px oklch(0.5 0.12 20 / 0.7);
-    margin-bottom: 2rem;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 700;
+    color: oklch(0.9 0.03 20);
+    margin-bottom: 1.5rem;
     letter-spacing: 0.02em;
-    line-height: 1.2;
+    text-shadow: 0 0 20px oklch(0.5 0.1 15 / 0.3);
 }
 
 .final-subtext {
-    font-size: clamp(1.2rem, 3vw, 2rem);
-    font-weight: 500;
-    color: oklch(0.7 0.08 25);
-    text-shadow: 0 0 20px oklch(0.4 0.1 25 / 0.5);
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    font-weight: 400;
+    color: oklch(0.7 0.05 20);
     font-style: italic;
     letter-spacing: 0.01em;
 }
@@ -500,62 +487,57 @@
     background: oklch(1 0 0);
     z-index: 9999;
     animation: flashFade 0.3s ease-out forwards;
-    pointer-events: none;
 }
 
 @keyframes flashFade {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
+    0% { opacity: 1; }
     100% { opacity: 0; }
 }
 
 /* Footer */
 .app-footer {
     position: fixed;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
     text-align: center;
     font-size: 0.875rem;
-    color: oklch(0.5 0.05 20);
+    color: oklch(0.6 0.05 20);
+    background: transparent;
     z-index: 100;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
-}
-
-.app-footer:hover {
-    opacity: 1;
+    pointer-events: none;
 }
 
 .app-footer a {
-    color: oklch(0.6 0.12 20);
+    color: oklch(0.7 0.12 20);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
+    pointer-events: auto;
 }
 
 .app-footer a:hover {
-    color: oklch(0.7 0.15 20);
-    text-decoration: underline;
+    color: oklch(0.75 0.15 20);
 }
 
 .footer-year {
     margin-top: 0.25rem;
     font-size: 0.75rem;
-    color: oklch(0.45 0.04 20);
+    opacity: 0.7;
 }
 
-/* Responsive adjustments */
+/* Mobile responsiveness */
 @media (max-width: 768px) {
-    .question-title {
-        margin-bottom: 2rem;
-    }
-    
     .buttons-container {
-        height: 180px;
+        gap: 1rem;
+        min-height: 180px;
+        max-width: 90vw;
     }
     
     .dramatic-message {
         top: -3rem;
         font-size: 1rem;
+        max-width: 90vw;
+        white-space: normal;
     }
 }

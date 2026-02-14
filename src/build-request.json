@@ -1,36 +1,71 @@
 {
   "kind": "build_request",
-  "title": "Retry build and deployment",
-  "priority": "normal",
+  "title": "Fix missing “No” button in question phase (redo visibility + positioning)",
+  "priority": "high",
   "requirements": [
     {
-      "id": "REQ-14",
-      "text": "Trigger a fresh build and deployment of the current project without making any code changes.",
-      "target": "unknown",
+      "id": "REQ-15",
+      "text": "Ensure the “No” button is visibly rendered immediately during the question phase (when “Will you be my Valentine?” is shown) and does not start overlapped/hidden behind the “Yes” button.",
+      "target": "frontend",
       "source": {
         "messageIds": [
-          "recent-user-1"
+          "msg-1",
+          "msg-2"
         ],
         "quotes": [
-          "retry build"
+          "BRO THERE IS STILL NO \"NO\" BUTTON. redo IT",
+          "apply"
         ]
       },
       "acceptanceCriteria": [
-        "A new build is started using the current repository state.",
-        "No source files are modified as part of this request.",
-        "Deployment is attempted again and reports success or a clear failure reason."
+        "After the intro countdown ends and the question phase appears, both buttons labeled exactly “Yes” and “No” are visible at the same time without any user interaction.",
+        "The initial “No” button position does not overlap the “Yes” button and is clearly readable/visible on both desktop and mobile viewport sizes.",
+        "The “No” button is not visually hidden due to stacking order (z-index), transparency, or being positioned behind other elements."
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Constrain the “No” button’s evasive movement to remain within the visible bounds of the question button area so it cannot move off-screen or under other UI (including the footer).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "BRO THERE IS STILL NO \"NO\" BUTTON. redo IT"
+        ]
+      },
+      "acceptanceCriteria": [
+        "On repeated hover attempts, the “No” button always remains fully within the visible bounds of the question phase button area (no clipping/off-screen).",
+        "The “No” button remains clickable/hoverable and continues to move away on hover across multiple attempts."
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "text": "Fix the “No” button attempt counter/message escalation logic so dramatic messages trigger at the intended attempt counts during the question phase (no stale state issues).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "BRO THERE IS STILL NO \"NO\" BUTTON. redo IT"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Dramatic messages appear consistently at the intended attempt milestones during hover attempts (e.g., 3rd, 5th, 7th+ attempt as defined by the implementation), without being delayed by one interaction.",
+        "The “No” button continues to shrink slightly after each failed hover attempt down to the defined minimum scale."
       ]
     }
   ],
   "constraints": [
-    "Do not introduce any new features or code changes; this request is only to re-run the build/deployment pipeline.",
-    "Keep the project architecture and technology stack unchanged."
+    "Keep the app as a single self-contained page (no routing); primary logic remains in frontend/src/App.tsx.",
+    "Do not load any external images, audio files, or animation libraries; all visuals via CSS/inline SVG/Canvas and all audio via Web Audio API.",
+    "Do not edit any files under frontend/src/components/ui or other paths listed as immutable in SYSTEM_CONTEXT."
   ],
   "nonGoals": [
-    "UI/UX updates",
-    "Backend logic changes",
-    "Dependency upgrades",
-    "Data/schema migrations"
+    "Do not change the “Yes” troll finale sequence timing/copy beyond what is necessary to fix the missing “No” button behavior.",
+    "Do not add backend features or persistence; backend/main.mo should remain unchanged unless strictly required."
   ],
   "imageRequirements": {
     "required": [],

@@ -2,10 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-trigger-a-fresh-build-and-deployment-of-the-current-project-without-making-any-code-changes",
-      "featureTitle": "Trigger a fresh build and deployment of the current project without making any code changes.",
+      "featureId": "feature-ensure-the-no-button-is-visibly-rendered-immediately-during-the-question-phase-when-will-you-be-my-valentine-is-shown-and-does-not-start-overlapped-hidden-behind-the-yes-button",
+      "featureTitle": "Ensure the “No” button is visibly rendered immediately during the question phase (when “Will you be my Valentine?” is shown) and does not start overlapped/hidden behind the “Yes” button.",
       "files": [
-        "frontend/public/.rebuild-trigger"
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -15,7 +16,44 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-14"
+        "REQ-15"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-constrain-the-no-button-s-evasive-movement-to-remain-within-the-visible-bounds-of-the-question-button-area-so-it-cannot-move-off-screen-or-under-other-ui-including-the-footer",
+      "featureTitle": "Constrain the “No” button’s evasive movement to remain within the visible bounds of the question button area so it cannot move off-screen or under other UI (including the footer).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-16"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-fix-the-no-button-attempt-counter-message-escalation-logic-so-dramatic-messages-trigger-at-the-intended-attempt-counts-during-the-question-phase-no-stale-state-issues",
+      "featureTitle": "Fix the “No” button attempt counter/message escalation logic so dramatic messages trigger at the intended attempt counts during the question phase (no stale state issues).",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-17"
       ],
       "confidence": "high"
     }

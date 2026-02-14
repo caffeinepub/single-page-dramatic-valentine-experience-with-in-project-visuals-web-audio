@@ -1,6 +1,6 @@
 {
-  "frontend/src/App.tsx": "Single-page Valentine proposal with intro (heartbeat/countdown), question (evasive \"No\" button), and new troll misdirection finale sequence (freeze → flash → \"WAIT.\" → dark/glitch/shake → \"But I won't.\" → teasing line → minimal dark final screen), all audio via Web Audio API.",
-  "frontend/src/index.css": "Complete styling with warm romantic OKLCH palette for intro/question phases and new dark minimal troll finale styles (grain overlay, glitch effects, dramatic text animations, screen shake) replacing all romantic celebration visuals.",
+  "frontend/src/App.tsx": "Single-page Valentine proposal with intro (heartbeat/countdown), question (evasive \"No\" button with bounded movement starting at x:70% y:50%), and troll misdirection finale sequence, using refs for container-aware positioning and fixed attempt counter escalation.",
+  "frontend/src/index.css": "Complete styling with warm romantic OKLCH palette for intro/question phases, dark minimal troll finale styles, and updated button positioning with proper z-index stacking ensuring the \"No\" button is always visible and movable within bounds.",
   "frontend/src/main.tsx": "Simplified entry point rendering only App wrapped in QueryClientProvider, removing InternetIdentityProvider since no auth is needed for this single-page experience.",
   "frontend/public/.rebuild-trigger": "No-op marker file created to trigger a fresh build/deployment pipeline run without modifying any application source code."
 }
