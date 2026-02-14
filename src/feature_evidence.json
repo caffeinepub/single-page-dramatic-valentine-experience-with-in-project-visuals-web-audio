@@ -1,0 +1,23 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-trigger-a-fresh-build-and-deployment-of-the-current-project-without-making-any-code-changes",
+      "featureTitle": "Trigger a fresh build and deployment of the current project without making any code changes.",
+      "files": [
+        "frontend/public/.rebuild-trigger"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

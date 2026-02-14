@@ -1,0 +1,561 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.625rem;
+        
+        /* Warm romantic palette - reds, pinks, golds, ivory */
+        --background: 0.98 0.02 15;
+        --foreground: 0.2 0.05 15;
+        --card: 1 0 0;
+        --card-foreground: 0.2 0.05 15;
+        --popover: 1 0 0;
+        --popover-foreground: 0.2 0.05 15;
+        --primary: 0.55 0.22 15;
+        --primary-foreground: 1 0 0;
+        --secondary: 0.95 0.05 30;
+        --secondary-foreground: 0.3 0.08 15;
+        --muted: 0.95 0.03 20;
+        --muted-foreground: 0.5 0.05 15;
+        --accent: 0.75 0.18 45;
+        --accent-foreground: 0.98 0 0;
+        --destructive: 0.55 0.25 25;
+        --destructive-foreground: 1 0 0;
+        --border: 0.9 0.04 20;
+        --input: 0.9 0.04 20;
+        --ring: 0.6 0.2 15;
+    }
+
+    .dark {
+        --background: 0.15 0.03 15;
+        --foreground: 0.95 0.02 20;
+        --card: 0.2 0.04 15;
+        --card-foreground: 0.95 0.02 20;
+        --popover: 0.18 0.04 15;
+        --popover-foreground: 0.95 0.02 20;
+        --primary: 0.65 0.2 15;
+        --primary-foreground: 0.98 0 0;
+        --secondary: 0.25 0.05 20;
+        --secondary-foreground: 0.95 0.02 20;
+        --muted: 0.25 0.04 18;
+        --muted-foreground: 0.6 0.04 18;
+        --accent: 0.4 0.12 30;
+        --accent-foreground: 0.98 0.02 20;
+        --destructive: 0.6 0.22 25;
+        --destructive-foreground: 0.98 0 0;
+        --border: 0.3 0.05 18;
+        --input: 0.3 0.05 18;
+        --ring: 0.5 0.15 20;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        font-family: 'Georgia', 'Times New Roman', serif;
+    }
+}
+
+/* App Container */
+.app-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background: oklch(0.1 0.02 15);
+    transition: background 0.5s ease;
+}
+
+/* Shake animation */
+.shake {
+    animation: shake 0.1s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px) rotate(-0.5deg); }
+    75% { transform: translateX(4px) rotate(0.5deg); }
+}
+
+.screen-shake {
+    animation: screenShake 0.2s ease-in-out;
+}
+
+@keyframes screenShake {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-3px, 2px); }
+    20% { transform: translate(3px, -2px); }
+    30% { transform: translate(-3px, -2px); }
+    40% { transform: translate(3px, 2px); }
+    50% { transform: translate(-2px, -3px); }
+    60% { transform: translate(2px, 3px); }
+    70% { transform: translate(-2px, 3px); }
+    80% { transform: translate(2px, -3px); }
+    90% { transform: translate(-1px, 1px); }
+}
+
+/* Intro Phase */
+.intro-phase {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: oklch(0.05 0 0);
+}
+
+.spotlight-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at center,
+        transparent 0%,
+        transparent 20%,
+        oklch(0.05 0 0) 60%
+    );
+    animation: spotlightReveal 3s ease-out forwards;
+}
+
+@keyframes spotlightReveal {
+    from {
+        opacity: 1;
+        background: oklch(0.05 0 0);
+    }
+    to {
+        opacity: 1;
+        background: radial-gradient(
+            circle at center,
+            transparent 0%,
+            transparent 30%,
+            oklch(0.05 0 0 / 0.8) 70%
+        );
+    }
+}
+
+.countdown-container {
+    z-index: 10;
+    animation: fadeIn 2s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.countdown {
+    font-size: clamp(4rem, 15vw, 12rem);
+    font-weight: 700;
+    color: oklch(0.85 0.15 15);
+    text-shadow: 0 0 40px oklch(0.6 0.2 15 / 0.8);
+    animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+/* Question Phase */
+.question-phase {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: oklch(0.12 0.03 15);
+    animation: fadeIn 1s ease-in;
+}
+
+.question-content {
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    max-width: 90vw;
+}
+
+.question-title {
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: 700;
+    color: oklch(0.9 0.08 20);
+    margin-bottom: 3rem;
+    text-shadow: 0 4px 20px oklch(0.5 0.15 15 / 0.4);
+    animation: titleEntrance 1s ease-out;
+    line-height: 1.2;
+}
+
+@keyframes titleEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dramatic-message {
+    position: absolute;
+    top: -4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: oklch(0.75 0.18 30);
+    font-style: italic;
+    animation: messageFloat 0.5s ease-out;
+    white-space: nowrap;
+    text-shadow: 0 2px 10px oklch(0.5 0.15 15 / 0.3);
+}
+
+@keyframes messageFloat {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.buttons-container {
+    position: relative;
+    height: 200px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.yes-button {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    padding: clamp(1.5rem, 4vw, 2rem) clamp(3rem, 8vw, 4rem);
+    background: oklch(0.55 0.22 15);
+    color: oklch(0.98 0 0);
+    border: none;
+    border-radius: 16px;
+    font-weight: 700;
+    box-shadow: 0 8px 30px oklch(0.5 0.2 15 / 0.5);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.yes-button:hover:not(:disabled) {
+    background: oklch(0.6 0.24 15);
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 12px 40px oklch(0.5 0.2 15 / 0.7);
+}
+
+.yes-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.no-button {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    padding: clamp(1rem, 3vw, 1.5rem) clamp(2rem, 5vw, 3rem);
+    background: transparent;
+    color: oklch(0.7 0.1 20);
+    border: 2px solid oklch(0.4 0.08 20);
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.no-button:hover {
+    background: oklch(0.15 0.04 20);
+    border-color: oklch(0.5 0.1 20);
+}
+
+/* Finale Phase - Troll Sequence */
+.finale-phase {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: oklch(0.08 0.01 15);
+}
+
+/* WAIT step */
+.finale-wait {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.wait-text {
+    font-size: clamp(3rem, 12vw, 8rem);
+    font-weight: 900;
+    color: oklch(0.95 0.05 20);
+    text-shadow: 0 0 60px oklch(0.7 0.15 15 / 0.9);
+    letter-spacing: 0.1em;
+    animation: waitPulse 1s ease-in-out;
+}
+
+@keyframes waitPulse {
+    0% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Dark glitch step */
+.finale-dark-glitch {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: oklch(0.05 0 0);
+    animation: darkFadeIn 0.3s ease-in;
+}
+
+@keyframes darkFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.glitch-overlay {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        oklch(0.05 0 0) 0px,
+        oklch(0.08 0.01 15) 2px,
+        oklch(0.05 0 0) 4px
+    );
+    animation: glitchScan 0.3s linear;
+    opacity: 0.6;
+}
+
+@keyframes glitchScan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+/* But I won't step */
+.finale-but-i-wont {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: oklch(0.05 0 0);
+    animation: fadeIn 0.5s ease-in;
+}
+
+.but-i-wont-text {
+    font-size: clamp(2.5rem, 10vw, 7rem);
+    font-weight: 800;
+    color: oklch(0.85 0.08 15);
+    text-shadow: 0 0 40px oklch(0.5 0.12 15 / 0.7);
+    letter-spacing: 0.05em;
+    animation: dramaticReveal 0.8s ease-out;
+}
+
+@keyframes dramaticReveal {
+    0% { 
+        opacity: 0; 
+        transform: scale(0.9);
+        filter: blur(10px);
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Teasing line step */
+.finale-teasing-line {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: oklch(0.06 0.01 15);
+    animation: fadeIn 0.6s ease-in;
+}
+
+.teasing-line-text {
+    font-size: clamp(2rem, 8vw, 5rem);
+    font-weight: 700;
+    color: oklch(0.8 0.1 20);
+    text-shadow: 0 0 30px oklch(0.5 0.15 20 / 0.6);
+    font-style: italic;
+    letter-spacing: 0.02em;
+    animation: teasingFloat 1s ease-out;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+@keyframes teasingFloat {
+    0% { 
+        opacity: 0; 
+        transform: translateY(30px);
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0);
+    }
+}
+
+/* Final screen */
+.finale-final-screen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: oklch(0.08 0.02 15);
+    animation: finalFadeIn 1.5s ease-in;
+}
+
+@keyframes finalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.grain-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(circle at center, transparent 0%, oklch(0.05 0 0 / 0.3) 100%),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            oklch(0.1 0.01 15 / 0.03) 2px,
+            oklch(0.1 0.01 15 / 0.03) 4px
+        );
+    animation: grainShift 8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes grainShift {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-2px, 2px); }
+    50% { transform: translate(2px, -2px); }
+    75% { transform: translate(-2px, -2px); }
+    100% { transform: translate(0, 0); }
+}
+
+.final-content {
+    z-index: 10;
+    text-align: center;
+    padding: 2rem;
+    max-width: 90vw;
+    animation: finalContentReveal 2s ease-out;
+}
+
+@keyframes finalContentReveal {
+    0% { 
+        opacity: 0; 
+        transform: scale(0.95);
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1);
+    }
+}
+
+.final-main-text {
+    font-size: clamp(2rem, 7vw, 5rem);
+    font-weight: 800;
+    color: oklch(0.85 0.08 20);
+    text-shadow: 0 0 40px oklch(0.5 0.12 20 / 0.7);
+    margin-bottom: 2rem;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+}
+
+.final-subtext {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 500;
+    color: oklch(0.7 0.08 25);
+    text-shadow: 0 0 20px oklch(0.4 0.1 25 / 0.5);
+    font-style: italic;
+    letter-spacing: 0.01em;
+}
+
+/* Flash overlay */
+.flash-overlay {
+    position: fixed;
+    inset: 0;
+    background: oklch(1 0 0);
+    z-index: 9999;
+    animation: flashFade 0.3s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes flashFade {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Footer */
+.app-footer {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 0.875rem;
+    color: oklch(0.5 0.05 20);
+    z-index: 100;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.app-footer:hover {
+    opacity: 1;
+}
+
+.app-footer a {
+    color: oklch(0.6 0.12 20);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.app-footer a:hover {
+    color: oklch(0.7 0.15 20);
+    text-decoration: underline;
+}
+
+.footer-year {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: oklch(0.45 0.04 20);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .question-title {
+        margin-bottom: 2rem;
+    }
+    
+    .buttons-container {
+        height: 180px;
+    }
+    
+    .dramatic-message {
+        top: -3rem;
+        font-size: 1rem;
+    }
+}

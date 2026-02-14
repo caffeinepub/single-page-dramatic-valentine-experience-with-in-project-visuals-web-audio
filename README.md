@@ -1,2 +1,3 @@
-# single-page-dramatic-valentine-experience-with-in-project-visuals-web-audio
-Exported from Caffeine project: Single-page dramatic Valentine experience with in-project visuals + Web Audio
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

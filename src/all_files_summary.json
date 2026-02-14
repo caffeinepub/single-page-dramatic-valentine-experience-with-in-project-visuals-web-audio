@@ -1,0 +1,15 @@
+{
+  "backend/main.mo": "Empty Motoko actor with no methods.",
+  "feature_evidence.json": "Feature evidence report linking a rebuild-trigger file to a fresh-build deployment feature.",
+  "frontend-file-summaries.txt": "Metadata file summarizing key frontend files and their roles in the Valentine app.",
+  "frontend/index.css": "Tailwind base theme defining OKLCH color variables for backgrounds, text, and UI components.",
+  "frontend/index.html": "HTML entry point mounting the React app and loading main.tsx.",
+  "frontend/public/.rebuild-trigger": "Timestamped file used solely to force a fresh build/deployment.",
+  "frontend/src/App.tsx": "Main React component implementing the interactive Valentine experience with phases, animations, and Web Audio effects.",
+  "frontend/src/hooks/useActor.ts": "Hook that creates and caches a backend actor, updating when Internet Identity changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Context and provider managing Internet Identity login, state, and stored identities.",
+  "frontend/src/index.css": "App-level styles including fonts, layout containers, animations, and phase-specific visuals.",
+  "frontend/src/main.tsx": "React entry point initializing QueryClient and InternetIdentityProvider before rendering App.",
+  "frontend/tailwind.config.js": "Tailwind config enabling dark mode, plugins, and OKLCH variable-based theming.",
+  "project_state.json": "Describes the project’s current build state, requirements, architecture constraints, and known issues for a self-contained Valentine’s React/TypeScript app. Includes feature definitions, a key bug about the missing 'No' button, and indicates this file represents an active fix request."
+}

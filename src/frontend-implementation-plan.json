@@ -1,0 +1,23 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Retry build and deployment (no functional changes)",
+  "requirements": [
+    {
+      "id": "REQ-14",
+      "summary": "Trigger a fresh build/deployment run using the current repository state with no functional/source changes.",
+      "acceptanceCriteria": [
+        "A new build is started using the current repository state.",
+        "No source files are modified as part of this request.",
+        "Deployment is attempted again and reports success or a clear failure reason."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/.rebuild-trigger",
+          "operation": "create",
+          "description": "Create a no-op rebuild trigger marker file intended solely to re-run the build/deployment pipeline (contains no application source/logic and does not change runtime behavior)."
+        }
+      ]
+    }
+  ]
+}

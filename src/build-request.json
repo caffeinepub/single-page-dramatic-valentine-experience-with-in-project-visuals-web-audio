@@ -1,0 +1,39 @@
+{
+  "kind": "build_request",
+  "title": "Retry build and deployment",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-14",
+      "text": "Trigger a fresh build and deployment of the current project without making any code changes.",
+      "target": "unknown",
+      "source": {
+        "messageIds": [
+          "recent-user-1"
+        ],
+        "quotes": [
+          "retry build"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A new build is started using the current repository state.",
+        "No source files are modified as part of this request.",
+        "Deployment is attempted again and reports success or a clear failure reason."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not introduce any new features or code changes; this request is only to re-run the build/deployment pipeline.",
+    "Keep the project architecture and technology stack unchanged."
+  ],
+  "nonGoals": [
+    "UI/UX updates",
+    "Backend logic changes",
+    "Dependency upgrades",
+    "Data/schema migrations"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

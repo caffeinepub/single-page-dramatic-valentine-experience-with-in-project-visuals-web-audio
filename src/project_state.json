@@ -1,0 +1,160 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 9,
+  "summary": "Build a single-page, self-contained Valentine’s Day proposal experience as a React + TypeScript app compatible with the Internet Computer stack, featuring cinematic UI sequences, evasive “No” button interactions, and fully in-project generated visuals/audio (no external assets or libraries unless absolutely required), with a teasing/troll “Yes” click finale (no romantic payoff).",
+  "architectural_notes": [
+    "App must be a single self-contained page (no routing/multi-view); functionality may live in App.tsx with small internal components.",
+    "Do not load external images, audio files, or animation libraries; generate all visuals via CSS animations/inline SVG/Canvas and all sounds via Web Audio API.",
+    "Target stack: React + TypeScript compatible with the Internet Computer project environment; avoid external dependencies unless absolutely required.",
+    "“Yes” click sequence direction changed: remove romantic celebration elements (confetti/gradient/romantic headline) and implement a timed, teasing misdirection finale with Web Audio glitch/bass drop + subtle ambient tone; use intentional delays/animation sequencing and randomized reveal/subtext lines.",
+    "Ensure both “Yes” and “No” buttons render during the question phase; the “No” button must not be gated behind the “Yes”/finale state or immediately unmounted by finale phase transitions."
+  ],
+  "known_issues": [
+    "Bug: “No” button does not appear during the question phase; it only shows briefly after clicking “Yes” and then disappears immediately."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-implement-the-entire-valentine-experience-as-a-single-self-contained-react-typescript-page-with-no-routing-and-no-multi-view-navigation-all-primary-functionality-must-live-in-app-tsx-small-internal-components-defined-inside-app-tsx-are-allowed",
+      "title": "Implement the entire Valentine experience as a single self-contained React + TypeScript page with no routing and no multi-view navigation. All primary functionality must live in App.tsx (small internal components defined inside App.tsx are allowed).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enforce-an-asset-dependency-policy-do-not-load-any-external-images-audio-files-or-animation-libraries-all-visuals-effects-must-be-produced-via-css-animations-inline-svg-and-or-canvas-all-sound-must-be-generated-with-the-web-audio-api-do-not-add-new-third-party-dependencies-unless-absolutely-required",
+      "title": "Enforce an asset/dependency policy: do not load any external images, audio files, or animation libraries. All visuals/effects must be produced via CSS animations, inline SVG, and/or Canvas; all sound must be generated with the Web Audio API. Do not add new third-party dependencies unless absolutely required.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-initial-pre-question-cinematic-sequence-start-on-a-black-screen-fade-in-a-heartbeat-sound-reveal-the-question-area-using-a-spotlight-animation-display-a-10-second-countdown-with-a-ticking-sound-add-subtle-screen-shake-during-the-last-3-seconds",
+      "title": "Create the initial/pre-question cinematic sequence: start on a black screen; fade in a heartbeat sound; reveal the question area using a spotlight animation; display a 10-second countdown with a ticking sound; add subtle screen shake during the last 3 seconds.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-the-core-prompt-and-controls-after-the-reveal-show-the-exact-text-will-you-be-my-valentine-with-two-buttons-labeled-exactly-yes-and-no",
+      "title": "Display the core prompt and controls after the reveal: show the exact text “Will you be my Valentine?” with two buttons labeled exactly “Yes” and “No”.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-no-button-evasive-behavior-it-moves-away-on-hover-shrinks-slightly-after-each-failed-attempt-and-shows-escalating-dramatic-messages-after-multiple-attempts",
+      "title": "Implement the “No” button evasive behavior: it moves away on hover, shrinks slightly after each failed attempt, and shows escalating dramatic messages after multiple attempts.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-yes-click-play-a-cinematic-finale-sequence-apply-a-1-second-freeze-effect-perform-a-bright-white-flash-transition-trigger-a-canvas-confetti-explosion-animate-falling-rose-petals-css-or-canvas-animate-floating-hearts-show-a-large-animated-headline-you-just-made-me-the-happiest-person-alive-and-subtext-i-might-actually-cry-transition-the-background-to-a-glowing-romantic-gradient-apply-a-subtle-zoom-in-camera-effect-generate-an-emotional-cinematic-sound-using-web-audio-api",
+      "title": "On “Yes” click, play a cinematic finale sequence: apply a 1-second freeze effect; perform a bright white flash transition; trigger a Canvas confetti explosion; animate falling rose petals (CSS or Canvas); animate floating hearts; show a large animated headline “YOU JUST MADE ME THE HAPPIEST PERSON ALIVE.” and subtext “I might actually cry.”; transition the background to a glowing romantic gradient; apply a subtle zoom-in camera effect; generate an emotional cinematic sound using Web Audio API.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-coherent-distinct-visual-theme-that-supports-an-over-the-top-cinematic-chaotic-but-wholesome-tone-avoid-a-blue-purple-palette-ensure-consistent-typography-spacing-button-styling-and-animation-timing-across-the-entire-experience",
+      "title": "Apply a coherent, distinct visual theme that supports an over-the-top, cinematic, chaotic-but-wholesome tone (avoid a blue/purple palette). Ensure consistent typography, spacing, button styling, and animation timing across the entire experience.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-existing-romantic-confetti-petals-hearts-yes-click-finale-in-frontend-src-app-tsx-with-a-fully-timed-teasing-troll-misdirection-sequence-on-yes-click-do-a-1-second-freeze-then-a-white-flash-then-show-big-bold-text-wait-for-1-second-then-darken-the-screen-while-playing-a-dramatic-glitch-bass-drop-sound-web-audio-api-with-a-slight-screen-shake-then-change-the-text-to-but-i-won-t-for-2-seconds-then-reveal-a-teasing-line-randomly-selected-from-an-array-e-g-make-it-that-easy-say-yes-that-fast-fall-for-that-so-quickly-let-you-win-without-a-challenge",
+      "title": "Replace the existing romantic/confetti/petals/hearts “Yes” click finale in frontend/src/App.tsx with a fully timed teasing/troll misdirection sequence: on “Yes” click do a 1-second freeze, then a white flash, then show big bold text “WAIT.” for 1 second, then darken the screen while playing a dramatic glitch/bass-drop sound (Web Audio API) with a slight screen shake, then change the text to “But I won’t.” for 2 seconds, then reveal a teasing line randomly selected from an array (e.g., “…make it that easy.”, “…say yes that fast.”, “…fall for that so quickly.”, “…let you win without a challenge.”).",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-finale-end-state-ui-after-the-teasing-line-reveal-to-a-minimal-dark-background-with-subtle-animated-grain-or-soft-glow-and-display-final-copy-with-random-warm-teasing-subtext-main-text-exactly-you-thought-this-was-simple-and-a-subtext-randomly-selected-from-an-array-e-g-relax-i-m-just-messing-with-you-maybe-i-like-that-you-said-yes-we-ll-see-what-happens-stay-tuned-tone-must-be-dramatic-slightly-chaotic-teasing-confident-a-little-mysterious-avoid-cringe-romance-overly-sweet-messaging-or-cruelty",
+      "title": "Update the finale end-state UI (after the teasing line reveal) to a minimal, dark background with subtle animated grain or soft glow, and display final copy with random warm-teasing subtext: main text exactly “You thought this was simple?” and a subtext randomly selected from an array (e.g., “Relax. I’m just messing with you.”, “Maybe I like that you said yes.”, “We’ll see what happens.”, “Stay tuned.”). Tone must be dramatic, slightly chaotic, teasing, confident, a little mysterious; avoid cringe romance, overly sweet messaging, or cruelty.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-existing-emotional-finale-sound-with-a-glitch-bass-drop-sound-that-overrides-any-current-finale-sound-during-the-darkening-glitch-beat-then-fade-into-a-subtle-ambient-background-tone-after-the-reveal-all-audio-must-be-generated-using-the-web-audio-api-in-frontend-src-app-tsx-do-not-add-external-audio-files-or-libraries",
+      "title": "Replace the existing “Emotional finale sound” with a glitch/bass-drop sound that overrides any current finale sound during the darkening/glitch beat, then fade into a subtle ambient background tone after the reveal. All audio must be generated using the Web Audio API in frontend/src/App.tsx; do not add external audio files or libraries.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-or-disable-all-unused-romantic-finale-only-logic-and-styling-hooks-that-would-conflict-with-the-new-troll-finale-including-confetti-particle-canvas-animation-petal-and-floating-heart-dom-generation-and-the-finale-bg-glowing-gradient-zoom-effect-being-automatically-applied-when-phase-finale-update-frontend-src-index-css-to-include-styles-animations-for-the-new-dark-troll-finale-e-g-minimal-background-grain-glow-bold-wait-glitch-text-presence-while-keeping-intro-and-question-phases-intact",
+      "title": "Remove or disable all unused romantic-finale-only logic and styling hooks that would conflict with the new troll finale, including: confetti particle canvas animation, petal and floating heart DOM generation, and the .finale-bg glowing gradient/zoom effect being automatically applied when phase === 'finale'. Update frontend/src/index.css to include styles/animations for the new dark troll finale (e.g., minimal background, grain/glow, bold “WAIT.”/glitch text presence) while keeping intro and question phases intact.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-question-phase-ui-so-the-no-button-is-visible-immediately-when-the-prompt-will-you-be-my-valentine-is-shown-instead-of-being-hidden-until-after-clicking-yes-ensure-the-initial-no-button-position-does-not-overlap-the-yes-button-and-remains-within-the-visible-bounds-of-the-question-button-area",
+      "title": "Fix the question phase UI so the “No” button is visible immediately when the prompt “Will you be my Valentine?” is shown, instead of being hidden until after clicking “Yes”. Ensure the initial “No” button position does not overlap the “Yes” button and remains within the visible bounds of the question button area.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-no-button-evasive-behavior-still-works-during-the-question-phase-after-the-visibility-fix-hovering-the-no-button-should-move-it-away-shrink-it-slightly-after-each-failed-attempt-and-continue-showing-escalating-dramatic-messages-after-multiple-attempts",
+      "title": "Ensure the “No” button evasive behavior still works during the question phase after the visibility fix: hovering the “No” button should move it away, shrink it slightly after each failed attempt, and continue showing escalating dramatic messages after multiple attempts.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-trigger-a-fresh-build-and-deployment-of-the-current-project-without-making-any-code-changes",
+      "title": "Trigger a fresh build and deployment of the current project without making any code changes.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create single-page React+TypeScript Valentine proposal UI displaying “Will you be my Valentine?” with Yes/No buttons (no routing; can live in App.tsx).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Implement evasive “No” button: moves away on hover, shrinks after failed attempts, and shows escalating dramatic messages after multiple attempts.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement pre-question cinematic sequence: black start, heartbeat audio fade-in, spotlight reveal, 10s countdown with ticking, and subtle screen shake during final 3 seconds.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Replace the “Yes” finale with a timed teasing/troll misdirection sequence: 1s freeze + white flash → “WAIT.” (pause) → darken + Web Audio glitch/bass drop overriding prior sound + slight screen shake → “But I won’t.” (pause) → reveal a randomly selected teasing line + final minimal dark screen with subtle animated grain/soft glow and randomly selected warm-teasing subtext; fade into subtle ambient tone (no confetti/gradient/romantic headline).",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Single-page dramatic Valentine experience with in-project visuals + Web Audio",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
